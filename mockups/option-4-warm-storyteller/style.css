@@ -304,13 +304,20 @@ a:hover { color: var(--espresso); }
 
 .ext-mark { font-size: 0.7em; opacity: 0.65; margin-left: 0.1em; }
 
-/* Scrolled header: transparent -> cream */
+/* Scrolled header: transparent -> cream.
+   Blur/background sit on a pseudo-element: backdrop-filter on .navbar itself
+   would become the containing block for the fixed mobile menu inside it,
+   collapsing the menu to the navbar's height after scroll. */
 .site-header.scrolled { --hdr-ink: var(--espresso); }
-.site-header.scrolled .navbar {
+.navbar { position: relative; }
+.navbar::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
   background: rgba(253, 248, 240, 0.94);
   box-shadow: 0 8px 30px -18px rgba(43, 33, 26, 0.45);
   backdrop-filter: blur(8px);
+  opacity: 0; transition: opacity 0.35s ease;
 }
+.site-header.scrolled .navbar::before { opacity: 1; }
 .site-header.scrolled .topbar { max-height: 0; opacity: 0; }
 
 /* Mobile menu */
@@ -370,6 +377,7 @@ body.nav-open .menu-toggle .bars::after { top: 0; transform: rotate(-45deg); tra
   body.nav-open { overflow: hidden; }
   body.nav-open .site-header { --hdr-ink: var(--cream); }
   body.nav-open .site-header .navbar { background: transparent; box-shadow: none; }
+  body.nav-open .site-header .navbar::before { opacity: 0; }
   body.nav-open .site-header .topbar { max-height: 0; opacity: 0; }
 
   .primary-nav ul { flex-direction: column; align-items: stretch; gap: 0.2rem; }

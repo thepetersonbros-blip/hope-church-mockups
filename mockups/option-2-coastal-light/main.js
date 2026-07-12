@@ -2,7 +2,17 @@
 (function () {
   'use strict';
 
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Demo override: visiting any page once with ?motion=1 forces full motion
+     for the whole session, even if the device has "reduce motion" enabled.
+     Lets the site be demoed on phones with the accessibility setting on. */
+  if (/[?&]motion=1/.test(window.location.search)) {
+    try { sessionStorage.setItem('forceMotion', '1'); } catch (e) {}
+  }
+  var forceMotion = false;
+  try { forceMotion = sessionStorage.getItem('forceMotion') === '1'; } catch (e) {}
+  if (forceMotion) document.documentElement.classList.add('force-motion');
+
+  var prefersReduced = !forceMotion && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Header: transparent over hero, cream on scroll ---------- */
   var header = document.getElementById('siteHeader');

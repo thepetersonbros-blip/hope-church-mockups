@@ -102,11 +102,17 @@ p{margin:0 0 1.2em;}
   color:#fff;text-decoration:none;line-height:1;white-space:nowrap;
 }
 .wordmark em{font-style:italic;font-weight:500;}
-.site-header.scrolled{
+/* blur/background live on a pseudo-element: backdrop-filter on the header
+   itself would become the containing block for the fixed mobile drawer,
+   collapsing it to the header's height after scroll */
+.site-header::before{
+  content:"";position:absolute;inset:0;z-index:-1;
   background:rgba(253,251,246,.94);
   box-shadow:0 1px 0 var(--hairline),0 18px 40px -30px rgba(18,51,45,.35);
   backdrop-filter:blur(10px);
+  opacity:0;transition:opacity .5s var(--ease);
 }
+.site-header.scrolled::before{opacity:1;}
 .site-header.scrolled .header-inner{padding:.8rem 0;}
 .site-header.scrolled .wordmark{color:var(--sea);}
 
@@ -510,15 +516,16 @@ body.nav-open .nav-toggle span:nth-child(3){transform:translateY(-8px) rotate(-4
   .belief{grid-template-columns:1fr;gap:.4rem;}
 }
 
-/* ---------- Reduced motion ---------- */
+/* ---------- Reduced motion ----------
+   html.force-motion (set by ?motion=1 demo override in main.js) opts back in. */
 @media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto;}
-  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
-  .hero-media img{animation:none;}
-  .hero-line > span{transform:none;animation:none;}
-  .hero h1 .hw{opacity:1;transform:none;animation:none;}
-  .hero-fade{opacity:1;transform:none;animation:none;}
-  .reveal{opacity:1;transform:none;}
-  .scripture .qw{opacity:1;transform:none;}
-  [data-parallax]{transform:none !important;}
+  html:not(.force-motion){scroll-behavior:auto;}
+  html:not(.force-motion) *,html:not(.force-motion) *::before,html:not(.force-motion) *::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+  html:not(.force-motion) .hero-media img{animation:none;}
+  html:not(.force-motion) .hero-line > span{transform:none;animation:none;}
+  html:not(.force-motion) .hero h1 .hw{opacity:1;transform:none;animation:none;}
+  html:not(.force-motion) .hero-fade{opacity:1;transform:none;animation:none;}
+  html:not(.force-motion) .reveal{opacity:1;transform:none;}
+  html:not(.force-motion) .scripture .qw{opacity:1;transform:none;}
+  html:not(.force-motion) [data-parallax]{transform:none !important;}
 }
