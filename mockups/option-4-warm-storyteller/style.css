@@ -31,6 +31,8 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+/* decorative frames bleed 14px past the wrap; never let them widen the page on mobile */
+html, body { overflow-x: clip; }
 
 body {
   margin: 0;
@@ -345,6 +347,7 @@ body.nav-open .menu-toggle .bars::after { top: 0; transform: rotate(-45deg); tra
 @media (max-width: 1020px) {
   .topbar-note { display: none; }
   .topbar-inner { justify-content: center; }
+  .topbar-nav { flex-wrap: wrap; justify-content: center; row-gap: 0.15rem; }
   .menu-toggle { display: inline-flex; }
 
   .primary-nav {
@@ -380,7 +383,7 @@ body.nav-open .menu-toggle .bars::after { top: 0; transform: rotate(-45deg); tra
     padding: 0.7rem 0.4rem;
     border-radius: 8px;
   }
-  .drop {
+  .primary-nav .has-drop > .drop {
     position: static;
     transform: none;
     min-width: 0;
@@ -391,10 +394,13 @@ body.nav-open .menu-toggle .bars::after { top: 0; transform: rotate(-45deg); tra
     opacity: 1;
     visibility: hidden;
     display: none;
+    pointer-events: auto;
   }
   .drop::before { display: none; }
-  .has-drop.open > .drop { display: block; visibility: visible; }
-  .has-drop:hover > .drop { transform: none; }
+  .primary-nav .has-drop.open > .drop { display: flex; flex-direction: column; visibility: visible; }
+  .primary-nav .has-drop:hover > .drop, .primary-nav .has-drop:focus-within > .drop { transform: none; }
+  /* on mobile, focus-within must not force the panel open — only .open does */
+  .primary-nav .has-drop:not(.open):focus-within > .drop { display: none; visibility: hidden; }
   .drop a { color: rgba(253, 248, 240, 0.85); font-family: var(--sans); font-size: 1rem; padding: 0.55rem 0.6rem; }
   .drop a:hover { background: rgba(253, 248, 240, 0.08); color: var(--honey); }
   .nav-give { margin: 1rem 0 0; }
@@ -513,8 +519,10 @@ body.nav-open .menu-toggle .bars::after { top: 0; transform: rotate(-45deg); tra
   background: linear-gradient(180deg, var(--espresso) 0%, var(--espresso-2) 100%);
   color: var(--cream);
 }
-.band-dark a { color: var(--honey); }
-.band-dark a:hover { color: var(--cream); }
+.band-dark a:not(.btn) { color: var(--honey); }
+.band-dark a:not(.btn):hover { color: var(--cream); }
+.band-dark .btn-primary { color: var(--espresso); }
+.band-dark .btn-primary:hover { color: var(--espresso); }
 .band-dark .lede, .band-dark p { color: rgba(253, 248, 240, 0.88); }
 .band-dark h2, .band-dark h3 { color: var(--cream); }
 
@@ -1092,7 +1100,8 @@ body.nav-open .menu-toggle .bars::after { top: 0; transform: rotate(-45deg); tra
   .photo-strip { grid-template-columns: 1fr; }
   .photo-strip img:nth-child(2) { transform: none; }
   .hero-copy { padding-top: 8rem; }
-  .topbar-nav { flex-wrap: wrap; justify-content: center; gap: 0.7rem 1rem; }
+  .topbar { max-height: 96px; }
+  .topbar-nav { flex-wrap: wrap; justify-content: center; gap: 0.15rem 1rem; }
 }
 
 /* ---------- Reduced motion ---------- */
