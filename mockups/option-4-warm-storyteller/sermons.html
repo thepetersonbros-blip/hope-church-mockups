@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sermons — Hope Bible Church</title>
+<meta name="description" content="Listen to sermon series from Hope Bible Church in Savannah, GA — preaching verse by verse through books of the Bible.">
+<link rel="icon" href="../../assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+  <div class="topbar">
+    <div class="wrap topbar-inner">
+      <p class="topbar-note">Sundays 10:15 AM &middot; Sunday School 9 AM &middot; 6500 Habersham Street, Savannah, GA</p>
+      <nav class="topbar-nav" aria-label="Utility">
+        <a href="index.html">Home</a>
+        <a href="https://hopesav.churchcenter.com/" target="_blank" rel="noopener">Members</a>
+        <a href="plan-a-visit.html">I&rsquo;m New</a>
+        <a href="events.html">Events</a>
+        <a href="https://hopesav.churchcenter.com/giving" target="_blank" rel="noopener">Give</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+  <div class="navbar">
+    <div class="wrap navbar-inner">
+      <a class="wordmark" href="index.html"><span class="wordmark-accent">Hope</span> Bible Church</a>
+      <nav class="primary-nav" id="primaryNav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="has-drop">
+            <button class="drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">About <span class="caret" aria-hidden="true"></span></button>
+            <ul class="drop">
+              <li><a href="plan-a-visit.html">Plan A Visit</a></li>
+              <li><a href="elders.html">Elders</a></li>
+              <li><a href="deacons.html">Deacons</a></li>
+              <li><a href="staff.html">Staff</a></li>
+              <li><a href="beliefs.html">Beliefs</a></li>
+            </ul>
+          </li>
+          <li class="has-drop">
+            <button class="drop-toggle" type="button" aria-expanded="false" aria-haspopup="true">Ministries <span class="caret" aria-hidden="true"></span></button>
+            <ul class="drop">
+              <li><a href="care-counseling.html">Care and Counseling</a></li>
+              <li><a href="hope-kids.html">Hope Kids</a></li>
+              <li><a href="home-groups.html">Home Groups</a></li>
+            </ul>
+          </li>
+          <li><a href="sermons.html" aria-current="page">Sermons</a></li>
+          <li><a href="https://hopesav.churchcenter.com/" target="_blank" rel="noopener">Members<span class="ext-mark" aria-hidden="true">&#8599;</span></a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li class="nav-give"><a class="btn btn-primary" href="https://hopesav.churchcenter.com/giving" target="_blank" rel="noopener">Give</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu"><span class="bars"></span></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<section class="page-hero">
+  <div class="hero-media">
+    <!-- swap this img for <video autoplay muted loop playsinline> when footage is ready -->
+    <img src="../../assets/img/worship-hero.jpg" alt="Preaching from the pulpit at Hope Bible Church">
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap page-hero-copy">
+    <p class="eyebrow">Listen &amp; Grow</p>
+    <h1>Sermons</h1>
+    <p class="lede">Most Sundays we preach verse by verse through books of the Bible. Choose a series below to listen.</p>
+  </div>
+</section>
+
+<section class="band band-cream">
+  <div class="wrap">
+    <div class="player-panel reveal" id="playerPanel">
+      <div class="player-art">
+        <img id="playerArt" src="../../assets/img/series-acts.png" alt="Acts sermon series artwork">
+      </div>
+      <div>
+        <p class="player-kicker">Now Playing</p>
+        <h2 id="playerTitle">Acts</h2>
+        <iframe id="sermonPlayer" title="Acts — sermon audio player" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1880672333&color=%23d99a3d&auto_play=false" allow="autoplay" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="series-toolbar">
+      <div class="section-head" style="margin-bottom:0;">
+        <p class="eyebrow">The Archive</p>
+        <h2 style="margin-bottom:0;">All sermon series</h2>
+      </div>
+      <div class="series-filter">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+        <label for="seriesFilter" style="position:absolute;left:-9999px;">Search sermon series</label>
+        <input type="search" id="seriesFilter" placeholder="Search series&hellip;">
+      </div>
+    </div>
+
+    <div class="series-grid" id="seriesGrid">
+      
+      <button class="series-card active reveal d1" type="button" data-playlist="1880672333" data-title="Acts" data-art="../../assets/img/series-acts.png" aria-pressed="true">
+        <img src="../../assets/img/series-acts.png" alt="Acts sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Acts</span><span>Current Series</span></span>
+      </button>
+      <button class="series-card reveal d2" type="button" data-playlist="1860926508" data-title="Armor of God" data-art="../../assets/img/series-armor-of-god.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-armor-of-god.jpg" alt="Armor of God sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Armor of God</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d3" type="button" data-playlist="1847391849" data-title="Summer of Psalms" data-art="../../assets/img/series-summer-of-psalms.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-summer-of-psalms.jpg" alt="Summer of Psalms sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Summer of Psalms</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d4" type="button" data-playlist="1814248350" data-title="Micah" data-art="../../assets/img/series-micah.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-micah.jpg" alt="Micah sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Micah</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d1" type="button" data-playlist="1717982985" data-title="Philippians" data-art="../../assets/img/series-philippians.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-philippians.jpg" alt="Philippians sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Philippians</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d2" type="button" data-playlist="1687136583" data-title="Basics" data-art="../../assets/img/series-basics.png" aria-pressed="false">
+        <img src="../../assets/img/series-basics.png" alt="Basics sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Basics</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d3" type="button" data-playlist="1591051012" data-title="Samuel" data-art="../../assets/img/series-samuel.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-samuel.jpg" alt="Samuel sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Samuel</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d4" type="button" data-playlist="1580472601" data-title="Elders" data-art="../../assets/img/series-elders.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-elders.jpg" alt="Elders sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Elders</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d1" type="button" data-playlist="1558147294" data-title="The Epistle of James" data-art="../../assets/img/series-james.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-james.jpg" alt="The Epistle of James sermon series artwork" loading="lazy">
+        <span class="series-name"><span>The Epistle of James</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d2" type="button" data-playlist="1561170676" data-title="Ruth" data-art="../../assets/img/series-ruth.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-ruth.jpg" alt="Ruth sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Ruth</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d3" type="button" data-playlist="1561176340" data-title="John" data-art="../../assets/img/series-john.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-john.jpg" alt="John sermon series artwork" loading="lazy">
+        <span class="series-name"><span>John</span><span>Series</span></span>
+      </button>
+      <button class="series-card reveal d4" type="button" data-playlist="1561176985" data-title="Songs for the Journey" data-art="../../assets/img/series-songs-for-the-journey.jpg" aria-pressed="false">
+        <img src="../../assets/img/series-songs-for-the-journey.jpg" alt="Songs for the Journey sermon series artwork" loading="lazy">
+        <span class="series-name"><span>Songs for the Journey</span><span>Series</span></span>
+      </button>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <blockquote class="scripture footer-scripture">
+      <span class="scripture-mark" aria-hidden="true">&ldquo;</span>
+      <p class="scripture-text settle">May the God of hope fill you with all joy and peace in believing, so that by the power of the Holy Spirit you may abound in hope.</p>
+      <cite>Romans 15:13</cite>
+    </blockquote>
+  </div>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="wordmark" href="index.html"><span class="wordmark-accent">Hope</span> Bible Church</a>
+      <p>Proclaiming The Power Of Christ To Change Lives in Savannah.</p>
+      <p>6500 Habersham Street<br>Savannah, GA 31405<br><br>Sundays 10:15 AM (during the school calendar year)<br>Sunday School 9 AM for all ages</p>
+    </div>
+    <nav aria-label="Footer — About">
+      <h3>About</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="plan-a-visit.html">Plan A Visit</a></li>
+        <li><a href="elders.html">Elders</a></li>
+        <li><a href="deacons.html">Deacons</a></li>
+        <li><a href="staff.html">Staff</a></li>
+        <li><a href="beliefs.html">Beliefs</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Footer — Ministries and church life">
+      <h3>Church Life</h3>
+      <ul>
+        <li><a href="care-counseling.html">Care and Counseling</a></li>
+        <li><a href="hope-kids.html">Hope Kids</a></li>
+        <li><a href="home-groups.html">Home Groups</a></li>
+        <li><a href="sermons.html">Sermons</a></li>
+        <li><a href="https://hopesav.churchcenter.com/" target="_blank" rel="noopener">Members</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="https://hopesav.churchcenter.com/giving" target="_blank" rel="noopener">Give</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="footer-news">
+      <h3>Subscribe to our E-mail list</h3>
+      <p>Be the first to get the latest updates and more!</p>
+      <form class="news-form" data-mock novalidate>
+        <label class="sr-only" for="news-fname" style="position:absolute;left:-9999px;">First Name</label>
+        <input id="news-fname" type="text" name="first-name" placeholder="First Name *" required autocomplete="given-name">
+        <label class="sr-only" for="news-email" style="position:absolute;left:-9999px;">Email Address</label>
+        <input id="news-email" type="email" name="email" placeholder="Email Address *" required autocomplete="email">
+        <button class="btn btn-primary" type="submit">Subscribe Now</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap">&copy; Hope Bible Church &middot; 6500 Habersham Street, Savannah, GA 31405 &middot; Sundays 10:15 AM</div>
+  </div>
+</footer>
+<a class="mock-badge" href="../../index.html">Mockup Option 4 — Warm Storyteller</a>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="main.js"></script>
+</body>
+</html>

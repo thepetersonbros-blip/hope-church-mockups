@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Hope Bible Church — Website Redesign Options</title>
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage:#a7d08c; --olive:#92a13f; --brown:#3f331b; --cream:#faf9f6; --ink:#2b2b28;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  header{padding:72px 0 40px;text-align:center}
+  .eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;font-weight:600;color:var(--olive)}
+  h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,5vw,3.6rem);color:var(--brown);margin:.35em 0 .4em}
+  header p{max-width:620px;margin:0 auto;color:#5a564d}
+  .current{display:inline-block;margin-top:18px;font-size:.9rem;color:#5a564d}
+  .current a{color:var(--olive)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;padding:36px 0 80px}
+  .card{background:#fff;border:1px solid #e8e4da;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease, box-shadow .3s ease;text-decoration:none;color:inherit}
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(63,51,27,.14)}
+  .swatch{height:96px;display:flex;align-items:flex-end;padding:14px 18px}
+  .swatch span{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+  .s2{background:linear-gradient(120deg,#f7f4ee,#a7d08c 55%,#1d4a42)}
+  .s4{background:linear-gradient(120deg,#fdf8f0,#d99a3d 55%,#2b211a)}
+  .s5{background:linear-gradient(120deg,#fafaf7,#a7d08c 40%,#22331f 90%)}
+  .s2 span,.s4 span{color:#2b211a;text-shadow:none}
+  .body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .num{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--olive)}
+  .body h2{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--brown)}
+  .body p{font-size:.92rem;color:#5a564d;flex:1}
+  .go{font-size:.88rem;font-weight:600;color:var(--brown)}
+  .card:hover .go{color:var(--olive)}
+  footer{padding:28px 0 60px;text-align:center;font-size:.85rem;color:#8a8577}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="eyebrow">Hope Bible Church &middot; Savannah, GA</div>
+  <h1>Website Redesign Options</h1>
+  <p>Three design directions built from the church's own content, photos, sermons, and ministries. Same pages and features in each one. Only the look and feel changes.</p>
+  <div class="current">Compare with the current site: <a href="https://hopesav.com" target="_blank" rel="noopener">hopesav.com</a></div>
+</header>
+<main class="wrap">
+  <div class="grid">
+    <a class="card" href="mockups/option-2-coastal-light/index.html">
+      <div class="swatch s2"><span>Coastal Light</span></div>
+      <div class="body">
+        <div class="num">Option A</div>
+        <h2>Coastal Light</h2>
+        <p>Airy and editorial with elegant serif headlines. Calm, refined, and warm. Draws on Savannah's coastal, historic character.</p>
+        <span class="go">View mockup &rarr;</span>
+      </div>
+    </a>
+    <a class="card" href="mockups/option-4-warm-storyteller/index.html">
+      <div class="swatch s4"><span>Warm Storyteller</span></div>
+      <div class="body">
+        <div class="num">Option B</div>
+        <h2>Warm Storyteller</h2>
+        <p>People-first and narrative, with scripture as a design element. Warm cream and espresso tones. Feels pastoral and personal.</p>
+        <span class="go">View mockup &rarr;</span>
+      </div>
+    </a>
+    <a class="card" href="mockups/option-5-fluid-motion/index.html">
+      <div class="swatch s5"><span>Fluid Motion</span></div>
+      <div class="body">
+        <div class="num">Option C</div>
+        <h2>Fluid Motion</h2>
+        <p>The showpiece. Soft drifting color, glass cards, and smooth motion throughout. The most dynamic and modern of the three.</p>
+        <span class="go">View mockup &rarr;</span>
+      </div>
+    </a>
+  </div>
+</main>
+<footer>All options keep every page, sermon playlist, form, and Church Center link from the current site. Hero sections are video-ready for future footage.</footer>
+</body>
+</html>
