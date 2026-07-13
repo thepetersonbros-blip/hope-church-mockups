@@ -91,7 +91,7 @@
       }
 
       wrapWords(h1);
-      h1.classList.add('split');
+      h1.classList.add('words-split');
 
       /* eyebrow / sub-headline / meta / CTA buttons follow the headline words */
       var hero = h1.closest('.hero');
@@ -118,6 +118,8 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
     revealEls.forEach(function (el) { io.observe(el); });
+    /* lets dynamically added elements (e.g. announcement cards) join the reveal system */
+    window.__coastalObserve = function (el) { io.observe(el); };
   }
 
   /* ---------- Scripture pull-quotes: word-by-word line reveal ---------- */
@@ -217,6 +219,108 @@
           card.style.display = match ? '' : 'none';
         });
       });
+    }
+  }
+
+  /* ---------- Announcements: driven by a shared Google Sheet ----------
+     How it works:
+     - Church staff edit a Google Sheet (tab "Announcements", columns:
+       Title | When | Details | Link). Share it "Anyone with the link: Viewer".
+     - Every page load fetches the sheet as CSV and renders the cards below.
+     - Fallback chain: live sheet -> last good copy (localStorage) ->
+       built-in demo rows (while no sheet is connected) -> friendly message.
+     To connect the real sheet, paste its ID between the quotes: */
+  var ANNC_SHEET_ID = '';
+  var ANNC_SHEET_TAB = 'Announcements';
+
+  var ANNC_DEMO = [
+    { title: 'Church Picnic at Lake Mayer', when: 'Sat, July 25 · 11 AM', details: 'Bring a side dish to share. Burgers, hot dogs, and drinks provided. Games for the kids!', link: '' },
+    { title: 'Hope Kids VBS Signups Open', when: 'July 28–31', details: 'Vacation Bible School for kids 4–12. Sign up at the welcome table on Sunday.', link: '' },
+    { title: 'Quarterly Members Meeting', when: 'Sun, Aug 2 · After Service', details: 'All members are encouraged to stay for the quarterly meeting in the fellowship hall.', link: '' }
+  ];
+
+  var anncGrid = document.getElementById('anncGrid');
+  if (anncGrid) {
+    var renderAnnc = function (rows) {
+      if (!rows || !rows.length) return false;
+      anncGrid.innerHTML = '';
+      rows.slice(0, 6).forEach(function (r, i) {
+        var card = document.createElement('article');
+        card.className = 'annc-card reveal reveal-d' + Math.min(i, 3);
+        if (r.when) {
+          var when = document.createElement('p');
+          when.className = 'annc-when'; when.textContent = r.when; card.appendChild(when);
+        }
+        var h = document.createElement('h3'); h.textContent = r.title; card.appendChild(h);
+        if (r.details) { var p = document.createElement('p'); p.textContent = r.details; card.appendChild(p); }
+        if (r.link) {
+          var a = document.createElement('a'); a.href = r.link; a.textContent = 'Learn more';
+          a.rel = 'noopener'; card.appendChild(a);
+        }
+        anncGrid.appendChild(card);
+        if (window.__coastalObserve) window.__coastalObserve(card); else card.classList.add('in');
+      });
+      return true;
+    };
+
+    // minimal CSV parser (handles quoted fields with commas/newlines)
+    var parseCSV = function (text) {
+      var rows = [], row = [], cur = '', inQ = false;
+      for (var i = 0; i < text.length; i++) {
+        var c = text[i];
+        if (inQ) {
+          if (c === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else inQ = false; }
+          else cur += c;
+        } else if (c === '"') inQ = true;
+        else if (c === ',') { row.push(cur); cur = ''; }
+        else if (c === '\n' || c === '\r') {
+          if (cur !== '' || row.length) { row.push(cur); rows.push(row); row = []; cur = ''; }
+          if (c === '\r' && text[i + 1] === '\n') i++;
+        } else cur += c;
+      }
+      if (cur !== '' || row.length) { row.push(cur); rows.push(row); }
+      return rows;
+    };
+
+    var showFallback = function () {
+      try {
+        var cached = JSON.parse(localStorage.getItem('hopeAnnc') || 'null');
+        if (renderAnnc(cached)) return;
+      } catch (e) {}
+      if (renderAnnc(ANNC_DEMO)) return;
+      anncGrid.innerHTML = '<p class="annc-fallback">Announcements are updating, check back soon.</p>';
+    };
+
+    if (!ANNC_SHEET_ID) {
+      showFallback(); // demo rows until the real sheet is connected
+    } else {
+      var url = 'https://docs.google.com/spreadsheets/d/' + ANNC_SHEET_ID +
+        '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(ANNC_SHEET_TAB);
+      var ctrl = ('AbortController' in window) ? new AbortController() : null;
+      var timer = ctrl && setTimeout(function () { ctrl.abort(); }, 6000);
+      fetch(url, ctrl ? { signal: ctrl.signal } : {})
+        .then(function (res) { if (!res.ok) throw new Error(res.status); return res.text(); })
+        .then(function (text) {
+          if (timer) clearTimeout(timer);
+          var rows = parseCSV(text);
+          var head = (rows.shift() || []).map(function (h) { return h.trim().toLowerCase(); });
+          var idx = {
+            title: head.indexOf('title'), when: head.indexOf('when'),
+            details: head.indexOf('details'), link: head.indexOf('link')
+          };
+          var items = rows.map(function (r) {
+            return {
+              title: (idx.title > -1 ? r[idx.title] : '') || '',
+              when: (idx.when > -1 ? r[idx.when] : '') || '',
+              details: (idx.details > -1 ? r[idx.details] : '') || '',
+              link: (idx.link > -1 ? r[idx.link] : '') || ''
+            };
+          }).filter(function (r) { return r.title.trim(); });
+          if (renderAnnc(items)) {
+            try { localStorage.setItem('hopeAnnc', JSON.stringify(items)); } catch (e) {}
+          } else showFallback();
+        })
+        .catch(function () { if (timer) clearTimeout(timer); showFallback(); });
     }
   }
 })();
