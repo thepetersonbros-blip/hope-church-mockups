@@ -230,7 +230,7 @@
      - Fallback chain: live sheet -> last good copy (localStorage) ->
        built-in demo rows (while no sheet is connected) -> friendly message.
      To connect the real sheet, paste its ID between the quotes: */
-  var ANNC_SHEET_ID = '';
+  var ANNC_SHEET_ID = '1Rh6HkYWKDfci81YBtaDqev_2fYPLMQfUjtXJejdN4A0';
   var ANNC_SHEET_TAB = 'Announcements';
 
   var ANNC_DEMO = [
