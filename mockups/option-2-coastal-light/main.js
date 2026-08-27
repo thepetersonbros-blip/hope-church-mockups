@@ -198,6 +198,8 @@
       if (art) { playerArt.src = art.src; playerArt.alt = title + ' sermon series artwork'; }
       playerFrame.title = title + ' sermon series on SoundCloud';
       playerWrap.classList.add('expanded');
+      var noteEl = document.getElementById('playerNote');
+      if (noteEl) noteEl.textContent = title + ' series playlist · Reload the page to hear the latest sermon.';
       /* Load the playlist only after the box finishes growing: the SoundCloud
          widget sizes its layout once at load, and loading mid-animation makes
          it render in its tiny-player mode. */
