@@ -198,8 +198,13 @@
       if (art) { playerArt.src = art.src; playerArt.alt = title + ' sermon series artwork'; }
       playerFrame.title = title + ' sermon series on SoundCloud';
       playerWrap.classList.add('expanded');
-      playerFrame.src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/' + id +
+      /* Load the playlist only after the box finishes growing: the SoundCloud
+         widget sizes its layout once at load, and loading mid-animation makes
+         it render in its tiny-player mode. */
+      var newSrc = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/' + id +
         '&color=%23de7454&auto_play=false&show_teaser=false&visual=false';
+      if (prefersReduced) { playerFrame.src = newSrc; }
+      else { setTimeout(function () { playerFrame.src = newSrc; }, 360); }
       if (scroll) playerWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
     }
 
