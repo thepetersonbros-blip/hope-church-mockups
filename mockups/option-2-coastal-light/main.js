@@ -197,6 +197,7 @@
       playerTitle.textContent = title;
       if (art) { playerArt.src = art.src; playerArt.alt = title + ' sermon series artwork'; }
       playerFrame.title = title + ' sermon series on SoundCloud';
+      playerWrap.classList.add('expanded');
       playerFrame.src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/' + id +
         '&color=%23de7454&auto_play=false&show_teaser=false&visual=false';
       if (scroll) playerWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
