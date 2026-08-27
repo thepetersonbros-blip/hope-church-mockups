@@ -198,7 +198,7 @@
       if (art) { playerArt.src = art.src; playerArt.alt = title + ' sermon series artwork'; }
       playerFrame.title = title + ' sermon series on SoundCloud';
       playerFrame.src = 'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/' + id +
-        '&color=%23cf7a5a&auto_play=false&show_teaser=false&visual=false';
+        '&color=%23de7454&auto_play=false&show_teaser=false&visual=false';
       if (scroll) playerWrap.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
     }
 
@@ -206,8 +206,8 @@
       card.addEventListener('click', function () { loadSeries(card, true); });
     });
 
-    /* Load the current series (first card) on page load */
-    if (cards.length) loadSeries(cards[0], false);
+    /* No auto-load: the page pins the newest sermon (latest-sermon.json);
+       clicking a series card below swaps the player to that playlist. */
 
     /* Simple series filter (search) */
     var filterInput = document.getElementById('seriesFilter');
